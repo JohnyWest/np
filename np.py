@@ -9,6 +9,11 @@ def change_theme(theme):
     text_field['insertbackground'] = view_colors[theme]['cursor']
     text_field['selectbackground'] = view_colors[theme]['select_bg']
 
+#def save_file()
+
+
+
+
 root = Tk()
 root.title('Заметочки')
 root.geometry('700x800')
@@ -36,7 +41,7 @@ view_menu.add_cascade(label='Тема', menu=view_menu_sub)
 
 ###Шрифт
 font_menu_sub.add_command(label='Arial', command=lambda: change_fonts('Arial'))
-font_menu_sub.add_command(label='Helvetica', command=lambda: change_fonts('Helvetica'))
+font_menu_sub.add_command(label='Comic Sans MS', command=lambda: change_fonts('Comic Sans MS'))
 font_menu_sub.add_command(label='Times New Roman', command=lambda: change_fonts('Times New Roman'))
 view_menu.add_cascade(label='Шрифт', menu=font_menu_sub)
 root.config(menu=view_menu)
@@ -69,8 +74,8 @@ fonts = {
     'Arial':{
         'font': 'Arial 14 bold'
     },
-    'Helvetica':{
-        'font': ('Helvetica', 14, 'bold'
+    'Comic Sans MS':{
+        'font': ('Comic Sans MS', 14, 'bold'
         )
     },
     'Times New Roman':{
