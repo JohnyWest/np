@@ -5,6 +5,13 @@ root.title('Заметочки')
 root.geometry('700x800')
 root.iconbitmap('Ico.ico')
 
+
+
+def change_fonts(fontss):
+    text_field['font'] = fonts[fontss]['text_bg']
+    
+    
+    
 #Раздел меню
 main_menu = Menu(root)
 
@@ -27,9 +34,9 @@ view_menu_sub.add_command(label='Светлая тема')
 view_menu.add_cascade(label='Тема', menu=view_menu_sub)
 
 ###Шрифт
-font_menu_sub.add_command(label='Arial')
-font_menu_sub.add_command(label='Roboto')
-font_menu_sub.add_command(label='Times New Roman')
+font_menu_sub.add_command(label='Arial', command=lambda: change_fonts('Arial'))
+font_menu_sub.add_command(label='Roboto', command=lambda: change_fonts('Roboto'))
+font_menu_sub.add_command(label='Times New Roman', command=lambda: change_fonts('Times New Roman'))
 view_menu.add_cascade(label='Шрифт', menu=font_menu_sub)
 root.config(menu=view_menu)
 
@@ -41,6 +48,24 @@ main_menu.add_cascade(label='Вид', menu=view_menu)
 f_text = Frame(root)
 f_text.pack(fill=BOTH, expand=1)
 
+
+
+fonts = {
+    'Arial':{
+        'font': 'Arial 14 bold'
+    },
+    'Roboto':{
+        'font': ('Roboto', 14, 'bold'
+        )
+    },
+    'Times New Roman':{
+        'font': ('Times New Roman', 14, 'bold'
+        )
+    }
+}
+
+
+
 #Settings of a text field
 text_field = Text(f_text, 
                   bg='gray', 
@@ -51,7 +76,8 @@ text_field = Text(f_text,
                   insertbackground='brown',
                   selectbackground='lime',
                   spacing3=15,
-                  width=10
+                  width=10,
+                  font='Arial 14 bold'                
                   )
 text_field.pack(expand=1, fill=BOTH, side='left')
 #Adding a scrollbar
