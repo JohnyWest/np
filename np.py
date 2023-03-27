@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter import messagebox
+from tkinter import filedialog
 
 def change_fonts(fontss):
     text_field['font'] = fonts[fontss]['font']
@@ -9,8 +11,23 @@ def change_theme(theme):
     text_field['insertbackground'] = view_colors[theme]['cursor']
     text_field['selectbackground'] = view_colors[theme]['select_bg']
 
-#def save_file()
+def np_openfile():
+    file_path = filedialog.askopenfilename(title='Выбор файла', filetypes=(('Текстовые документы (*.txt)', '*txt'), ('Все файлы', '*.*')))
+    if file_path:
+        text_field.delete('1.0', END)
+        text_field.insert('1.0', open(file_path, encoding='utf-8').read())
 
+def np_savefile():
+    file_path = filedialog.asksaveasfilename(filetypes=(('Текстовые документы (*.txt)', '*txt'), ('Все файлы', '*.*')))
+    f = open(file_path, 'w', encoding='utf-8')
+    text = text_field.get('1.0', END)
+    f.write(text)
+    f.close()
+
+def np_exit():
+    answer = messagebox.askokcancel('Выход', 'Вы точно хотите выйти?')
+    if answer:
+        root.destroy()
 
 
 
@@ -24,10 +41,10 @@ main_menu = Menu(root)
 
 ##Файл
 file_menu = Menu(main_menu, tearoff=0)
-file_menu.add_command(label='Открыть')
-file_menu.add_command(label='Сохранить')
+file_menu.add_command(label='Открыть', command=np_openfile)
+file_menu.add_command(label='Сохранить', command=np_savefile)
 file_menu.add_separator()
-file_menu.add_command(label='Закрыть')
+file_menu.add_command(label='Закрыть', command=np_exit)
 root.config(menu=main_menu)
 
 
